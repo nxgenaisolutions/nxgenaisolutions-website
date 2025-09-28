@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom API Development | NexGenAI Solutions</title>
+    <script src="https://kit.fontawesome.com/4a1c174670.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a4a8f;
+            --secondary-color: #1764bf;
+            --accent-color: #00bfa5;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --light-text-color: #fff;
+            --card-bg: #ffffff;
+            --code-bg: #2d2d2d;
+            --shadow: 0 6px 20px rgba(0,0,0,0.07);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-color);
+        }
+
+        /* --- Header / Hero Section --- */
+        .hero {
+            background-color: var(--primary-color);
+            background-image: linear-gradient(45deg, #1a2a4c, #2e4a80);
+            color: var(--light-text-color);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        .hero .tagline {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* --- General Section Styling --- */
+        .section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        /* --- Content Layout --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .content-text h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        .content-text p {
+            margin-bottom: 15px;
+        }
+        .content-text ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .content-text li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .content-text li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #38bdf8;
+            font-size: 1.2rem;
+        }
+
+        /* --- Code Snippet Styling --- */
+        .code-snippet {
+            background-color: var(--code-bg);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+            border-left: 4px solid #38bdf8;
+        }
+        .code-snippet pre {
+            font-family: 'Fira Code', monospace;
+            color: #f8f8f2;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.9em;
+        }
+        .code-snippet .comment { color: #888; }
+        .code-snippet .keyword { color: #f92672; }
+        .code-snippet .function { color: #a6e22e; }
+        .code-snippet .string { color: #e6db74; }
+        .code-snippet .class-name { color: #66d9ef; }
+        .code-snippet .decorator { color: #fd971f; }
+
+        /* --- Feature Cards --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .feature-card .icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- Footer CTA --- */
+        .footer-cta {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 60px 0;
+        }
+        .footer-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            background-color: #38bdf8;
+            color: var(--primary-color) !important;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .cta-button:hover {
+            background-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+             .content-grid .code-snippet {
+                grid-row: 1;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">NexGenAI Solutions</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="container">
+            <h1>Unlock Your Data's True Potential</h1>
+            <p class="tagline">
+                We design and co-build secure, scalable, and fully authenticated APIs to connect your valuable data to any application, internal or external.
+            </p>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">Break Down Data Silos. Create New Opportunities.</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-sitemap"></i></div>
+                    <h3>Internal Tool Integration</h3>
+                    <p>Empower your internal applications with live, secure access to your central data warehouse like Snowflake.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-handshake"></i></div>
+                    <h3>Client & Partner Data Access</h3>
+                    <p>Create new revenue streams or enhance partnerships by offering secure, controlled data access to external clients.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-chart-line"></i></div>
+                    <h3>Automated Reporting & BI</h3>
+                    <p>Feed data directly into BI tools or automated systems without manual data pulls or fragile file transfers.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-mobile-alt"></i></div>
+                    <h3>Powering Web & Mobile Apps</h3>
+                    <p>Build the robust and secure backend needed to power your next customer-facing application on a solid data foundation.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="section" style="background-color: #fff;">
+        <div class="container">
+            <h2 class="section-title">How We Build: Secure, Scalable, and Modern</h2>
+            <div class="content-grid">
+                <div class="content-text">
+                    <h3>Enterprise-Grade Foundations</h3>
+                    <p>An API is the digital front door to your data. We build it with the security, performance, and reliability that your business demands, working collaboratively with your team at every step.</p>
+                    <ul>
+                        <li><strong>Modern Frameworks:</strong> We use proven, high-performance Python frameworks like Flask or FastAPI to build fast and scalable API endpoints.</li>
+                        <li><strong>Direct Data Connectivity:</strong> Our APIs connect directly to your data source, like Snowflake, using efficient, secure connectors like SQLAlchemy.</li>
+                        <li><strong>Robust Authentication:</strong> Security is paramount. Every protected endpoint is wrapped in an authentication layer, requiring a valid API key for access.</li>
+                        <li><strong>Clear & Documented:</strong> We believe in building solutions that are easy to maintain. The final product is a clean, well-documented codebase your team can own.</li>
+                    </ul>
+                </div>
+                <div class="code-snippet">
+                    <pre><span class="keyword">from</span> flask <span class="keyword">import</span> <span class="class-name">Flask</span>, jsonify, request
+<span class="keyword">from</span> functools <span class="keyword">import</span> wraps
+
+app = <span class="function">Flask</span>(__name__)
+
+<span class="comment"># A powerful decorator to protect an endpoint</span>
+<span class="keyword">def</span> <span class="function">api_key_required</span>(f):
+    <span class="decorator">@wraps(f)</span>
+    <span class="keyword">def</span> <span class="function">decorated</span>(*args, **kwargs):
+        api_key = request.headers.get(<span class="string">'Authorization'</span>)
+        <span class="keyword">if</span> api_key <span class="keyword">and</span> api_key == <span class="string">'Bearer your-secret-key'</span>:
+            <span class="keyword">return</span> <span class="function">f</span>(*args, **kwargs)
+        <span class="keyword">else</span>:
+            <span class="keyword">return</span> <span class="function">jsonify</span>({<span class="string">"error"</span>: <span class="string">"Unauthorized"</span>}), 401
+    <span class="keyword">return</span> decorated
+
+<span class="comment"># Example of a protected API endpoint</span>
+<span class="decorator">@app.route('/data', methods=['GET'])</span>
+<span class="decorator">@api_key_required</span>
+<span class="keyword">def</span> <span class="function">get_data</span>():
+    <span class="comment"># 1. Connect to the Snowflake Engine</span>
+    <span class="keyword">with</span> engine.<span class="function">connect</span>() <span class="keyword">as</span> connection:
+        <span class="comment"># 2. Execute a secure, parameterized query</span>
+        result = connection.<span class="function">execute</span>(text(<span class="string">"SELECT * FROM ..."</span>))
+        <span class="comment"># 3. Return data as clean JSON</span>
+        <span class="keyword">return</span> <span class="function">jsonify</span>([dict(row) <span class="keyword">for</span> row <span class="keyword">in</span> result])
+</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="our-process" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Collaborative Process</h2>
+            <div class="content-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="content-text">
+                    <h3>Empowerment Through Partnership</h3>
+                    <p>We don't just deliver code; we deliver knowledge. Our process is designed to upskill your team and ensure you have full ownership of the solution.</p>
+                    <ul>
+                        <li><strong>Discovery & Architecture:</strong> We start by understanding your business goals to design an API that meets your needs for today and tomorrow.</li>
+                        <li><strong>Co-Development Sprints:</strong> We work directly with your engineers in paired programming sessions, building the API together in your environment.</li>
+                        <li><strong>Knowledge Transfer:</strong> We ensure your team understands the architecture, security model, and deployment process.</li>
+                    </ul>
+                </div>
+                <div class="content-text">
+                    <h3>Your Data, Your Control</h3>
+                     <p>We build the bridge between your data and your applications, giving you a powerful, reusable asset that will serve as a foundation for future innovation.</p>
+                     <ul>
+                        <li><strong>Single Source of Truth:</strong> Centralize data access through one secure point, ensuring consistency across all applications.</li>
+                        <li><strong>Enhanced Security:</strong> Control exactly who can access what data with robust authentication and granular permissions.</li>
+                        <li><strong>Future-Proof Foundation:</strong> An API provides a flexible layer that allows you to change underlying data sources without breaking everything.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="footer-cta">
+        <div class="container">
+            <h2>Ready to Connect Your Data?</h2>
+            <p>Let's schedule a call to discuss how a custom API can unlock value and drive innovation in your organization.</p>
+            <a href="mailto:your-email@example.com" class="cta-button">Book a Consultation</a>
+        </div>
+    </section>
+
+</body>
+</html>

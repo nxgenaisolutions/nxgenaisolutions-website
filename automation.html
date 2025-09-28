@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>End-to-End Automation | NexGenAI Solutions</title>
+    <script src="https://kit.fontawesome.com/4a1c174670.js" crossorigin="anonymous"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&family=Fira+Code:wght@400;500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary-color: #0a4a8f;
+            --secondary-color: #1764bf;
+            --accent-color: #00bfa5;
+            --bg-color: #f8f9fa;
+            --text-color: #333;
+            --light-text-color: #fff;
+            --card-bg: #ffffff;
+            --code-bg: #2d2d2d;
+            --shadow: 0 6px 20px rgba(0,0,0,0.07);
+        }
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.7;
+        }
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        h1, h2, h3 {
+            font-weight: 600;
+        }
+
+        /* --- Navigation Bar --- */
+        .navbar {
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+        }
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .nav-logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            text-decoration: none;
+        }
+        .nav-menu {
+            list-style: none;
+            display: flex;
+            gap: 25px;
+        }
+        .nav-menu a {
+            color: var(--text-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        .nav-menu a:hover, .nav-menu a.active {
+            color: var(--accent-color);
+        }
+
+        /* --- Header / Hero Section --- */
+        .hero {
+            background-image: linear-gradient(45deg, #6a11cb, #2575fc);
+            color: var(--light-text-color);
+            padding: 80px 0;
+            text-align: center;
+        }
+        .hero h1 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+        }
+        .hero .tagline {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* --- General Section Styling --- */
+        .section {
+            padding: 80px 0;
+        }
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 50px;
+            color: var(--primary-color);
+        }
+
+        /* --- Content Layout --- */
+        .content-grid {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 50px;
+            align-items: center;
+        }
+        .content-text h3 {
+            font-size: 1.5rem;
+            color: var(--secondary-color);
+            margin-bottom: 15px;
+        }
+        .content-text p {
+            margin-bottom: 15px;
+        }
+        .content-text ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .content-text li {
+            padding-left: 30px;
+            position: relative;
+            margin-bottom: 10px;
+        }
+        .content-text li::before {
+            content: '\f058';
+            font-family: 'Font Awesome 5 Free';
+            font-weight: 900;
+            position: absolute;
+            left: 0;
+            color: #4cddbd;
+            font-size: 1.2rem;
+        }
+
+        /* --- Code Snippet Styling --- */
+        .code-snippet {
+            background-color: var(--code-bg);
+            border-radius: 8px;
+            padding: 20px;
+            overflow-x: auto;
+            box-shadow: var(--shadow);
+            border-left: 4px solid #4cddbd;
+            max-height: 500px;
+        }
+        .code-snippet pre {
+            font-family: 'Fira Code', monospace;
+            color: #f8f8f2;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            font-size: 0.9em;
+        }
+        .code-snippet .comment { color: #888; }
+        .code-snippet .keyword { color: #f92672; }
+        .code-snippet .function { color: #a6e22e; }
+        .code-snippet .string { color: #e6db74; }
+        .code-snippet .class-name { color: #66d9ef; }
+
+        /* --- Feature Cards --- */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+        .feature-card {
+            background: var(--card-bg);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: var(--shadow);
+            text-align: center;
+        }
+        .feature-card .icon {
+            font-size: 3rem;
+            color: var(--primary-color);
+            margin-bottom: 20px;
+        }
+        .feature-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        /* --- Footer CTA --- */
+        .footer-cta {
+            background-color: var(--primary-color);
+            color: var(--light-text-color);
+            text-align: center;
+            padding: 60px 0;
+        }
+        .footer-cta h2 {
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+        .cta-button {
+            background-color: #4cddbd;
+            color: var(--primary-color) !important;
+            padding: 15px 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border-radius: 5px;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block;
+            margin-top: 10px;
+        }
+        .cta-button:hover {
+            background-color: #fff;
+            transform: translateY(-2px);
+        }
+
+        @media (max-width: 900px) {
+            .content-grid {
+                grid-template-columns: 1fr;
+            }
+             .content-grid .code-snippet {
+                grid-row: 1;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-menu { display: none; }
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="nav-logo">NexGenAI Solutions</a>
+            <ul class="nav-menu">
+                <li><a href="index.html#services">Services</a></li>
+                <li><a href="index.html#process">Our Process</a></li>
+                <li><a href="index.html#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+    <section class="hero">
+        <div class="container">
+            <h1>Achieve True End-to-End Automation</h1>
+            <p class="tagline">
+                We design and co-build fully automated data pipelines that run on a schedule, eliminating manual intervention to increase reliability, reduce errors, and free up your team for high-value work.
+            </p>
+        </div>
+    </section>
+
+    <section id="features" class="section">
+        <div class="container">
+            <h2 class="section-title">From Data Arrival to Data Delivery. No Human Touch.</h2>
+            <div class="feature-grid">
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-truck-loading"></i></div>
+                    <h3>Automated Data Ingestion</h3>
+                    <p>Automatically fetch data from any source—SFTP servers, Google Drive, APIs, or partner systems—on a daily, weekly, or monthly schedule.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-file-excel"></i></div>
+                    <h3>Complex Format Handling</h3>
+                    <p>Ingest and parse data in any format, from messy multi-sheet Excel files and CSVs to JSON, Parquet, or unstructured text.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-cogs"></i></div>
+                    <h3>Automated Transformation</h3>
+                    <p>Clean, join, aggregate, and transform your raw data into analysis-ready datasets using powerful, version-controlled SQL and Python scripts.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="icon"><i class="fas fa-snowflake"></i></div>
+                    <h3>Data Warehouse Loading</h3>
+                    <p>Securely and efficiently load your processed data into your cloud data warehouse, like Snowflake, making it available for analytics.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="architecture" class="section" style="background-color: #fff;">
+        <div class="container">
+            <h2 class="section-title">The Orchestration Engine</h2>
+            <div class="content-grid">
+                <div class="content-text">
+                    <h3>A Centralized, Task-Driven Approach</h3>
+                    <p>True automation is achieved through robust orchestration. We build a central Python script that acts as the "brain" of your data operations, defining and scheduling every task in your pipeline.</p>
+                    <ul>
+                        <li><strong>Scheduled Execution:</strong> The entire pipeline is triggered on a schedule (e.g., using cron), ensuring data is processed consistently without manual kickoff.</li>
+                        <li><strong>Modular Task Design:</strong> Each step—from downloading a file to running a SQL transformation—is a distinct, reusable function. This makes the system easy to understand, maintain, and extend.</li>
+                        <li><strong>Comprehensive Connectivity:</strong> The script is equipped to connect to any system you use, including SFTP servers, cloud storage, Google Sheets, and databases like MongoDB and Snowflake.</li>
+                        <li><strong>Full Audit Trail:</strong> Every action is logged, providing a clear and auditable history of your data processing jobs for troubleshooting and governance.</li>
+                    </ul>
+                </div>
+                <div class="code-snippet">
+                    <pre><span class="comment">#!/usr/bin/python3</span>
+<span class="keyword">import</span> sys
+<span class="keyword">import</span> snowflake.connector <span class="keyword">as</span> snow
+<span class="keyword">from</span> utils <span class="keyword">import</span> download_files_from_sftp
+
+<span class="keyword">def</span> <span class="function">ftp_adintel</span>():
+    <span class="function">download_files_from_sftp</span>(...)
+
+<span class="keyword">def</span> <span class="function">import_adintel</span>():
+    <span class="comment"># ... (logic to import data to staging) ...</span>
+
+<span class="keyword">def</span> <span class="function">process_adintel_in_snowflake</span>():
+    sql = <span class="string">"CREATE OR REPLACE TABLE VIZ.STUFF.A_ADINTEL AS SELECT ..."</span>
+    cur.<span class="function">execute</span>(sql)
+
+<span class="keyword">def</span> <span class="function">main</span>():
+    action = sys.argv[1]
+
+    <span class="keyword">if</span> action == <span class="string">'daily_adintel_run'</span>:
+        <span class="function">print</span>(<span class="string">"--- Starting Daily AdIntel Pipeline ---"</span>)
+        <span class="function">ftp_adintel</span>()
+        <span class="function">import_adintel</span>()
+        <span class="function">process_adintel_in_snowflake</span>()
+        <span class="function">print</span>(<span class="string">"--- Daily AdIntel Pipeline Complete ---"</span>)
+
+    <span class="keyword">elif</span> action == <span class="string">'weekly_tam_run'</span>:
+        <span class="comment"># ... (logic for weekly run) ...</span>
+
+<span class="keyword">if</span> __name__ == <span class="string">'__main__'</span>:
+    <span class="function">main</span>()
+</pre>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="our-process" class="section">
+        <div class="container">
+            <h2 class="section-title">Our Collaborative Build Process</h2>
+             <p class="section-subtitle" style="max-width: 800px;">We believe in building solutions *with* you, not just *for* you. Our process is designed to upskill your team and ensure you have full ownership of a robust, maintainable automation suite.</p>
+            <div class="content-grid" style="grid-template-columns: 1fr 1fr;">
+                <div class="content-text">
+                    <h3>Phase 1: Discovery & Prototyping</h3>
+                     <p>We begin by mapping your existing manual processes and identifying the biggest bottlenecks. We'll then work with your team to build a small-scale prototype of a single automated task to demonstrate the value and transfer key skills.</p>
+                </div>
+                <div class="content-text">
+                    <h3>Phase 2: Co-Development & Integration</h3>
+                     <p>We build out the full, end-to-end orchestration script side-by-side with your engineers. We integrate all your data sources, implement robust error handling and logging, and establish best practices for managing the code in a version control system like Git.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="footer-cta">
+        <div class="container">
+            <h2>Ready to Eliminate Manual Data Work?</h2>
+            <p>Let's schedule a call to discuss how a custom automation suite can save your team hundreds of hours and bring new levels of reliability to your data operations.</p>
+            <a href="mailto:your-email@example.com" class="cta-button">Book a Consultation</a>
+        </div>
+    </section>
+
+</body>
+</html>
